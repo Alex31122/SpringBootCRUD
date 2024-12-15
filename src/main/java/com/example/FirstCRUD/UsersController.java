@@ -65,6 +65,7 @@ public class UsersController {
         return "editar";
     }
 
+    // No es el mejor enfoque, se utiliza normalmente el la sentencia PUT
     @PostMapping("/editar/{id}")
     public String actualizarUsuario(@PathVariable Long id, @ModelAttribute("usuario") @Valid Users updatedUsers,
             BindingResult bindingResult) {
@@ -79,4 +80,20 @@ public class UsersController {
         return "redirect:/usuarios";
     }
 
+    @GetMapping("/eliminar/{id}")
+    public String eliminarUsuario(@PathVariable Long id) {
+        Users users = usersRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+        usersRepository.delete(users);
+
+        return "redirect:/usuarios";
+    }
+
+    /*
+     * @DeleteMapping("/eliminar/{id}")
+     * public String eliminarUsuario(@PathVariable Long id) {
+     * usersRepository.deleteById(id);
+     * return "redirect:/usuarios";
+     * }
+     */
 }
