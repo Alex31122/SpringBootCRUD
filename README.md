@@ -18,7 +18,7 @@ After the proper configuration you'll need to create the jar file to execute the
 
 After that comand you have to create the container with de help of docker compose:
 
-    docker comopose up --build
+    docker compose up --build
 
 This will create and run the containers of postgres and springboot app.
 
